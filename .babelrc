@@ -1,0 +1,13 @@
+{
+  "presets": [
+    "babel-preset-stage-2",
+    [
+      "babel-preset-env",
+      {
+        "targets": {
+          "node": 4
+        }
+      }
+    ]
+  ]
+}
