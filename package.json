@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-tune",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Gatsby plugin to expose TUNE data as GraphQL sources",
   "license": "MIT",
   "scripts": {
