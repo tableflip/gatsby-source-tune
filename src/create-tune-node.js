@@ -2,7 +2,7 @@ const slash = require('slash')
 const Path = require('path')
 const Crypto = require('crypto')
 const Fs = require('fs-extra')
-const _ = require('lodash')
+// const _ = require('lodash')
 
 const createId = (path) => {
   const slashed = slash(path)
@@ -17,6 +17,7 @@ exports.createTuneNode = async (pathToFile, pluginOptions = {}) => {
   const parsedSlashed = Path.parse(slashed)
 
   let type
+  let page = Path.basename(parsedSlashed.dir)
 
   if (parsedSlashed.base === 'facts.json') {
     type = 'Facts'
@@ -24,10 +25,10 @@ exports.createTuneNode = async (pathToFile, pluginOptions = {}) => {
     if (parsedSlashed.dir === rootPath) {
       type = 'FactsSchema'
     } else {
-      type = _.upperFirst(_.camelCase(`${Path.basename(parsedSlashed.dir)} Schema`))
+      type = 'Schema'
     }
   } else if (parsedSlashed.base === 'content.json') {
-    type = _.upperFirst(_.camelCase(`${Path.basename(parsedSlashed.dir)} Content`))
+    type = 'Content'
   }
 
   const content = await Fs.readFile(slashed, 'utf-8')
@@ -45,6 +46,7 @@ exports.createTuneNode = async (pathToFile, pluginOptions = {}) => {
     absolutePath: slashed,
     // Useful for limiting graphql query with certain parent directory
     relativeDirectory: Path.relative(rootPath, parsedSlashed.dir),
+    page,
     ...parsedContent
   }
 }

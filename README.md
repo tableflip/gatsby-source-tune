@@ -2,7 +2,7 @@
 
 Gatsby plugin to expose TUNE data as GraphQL nodes.
 
-Creates `Facts` and `*Content` nodes and `FactsSchema` and `*Schema` nodes.
+Creates `Facts` and `Content` nodes and `FactsSchema` and `Schema` nodes.
 
 ## Install
 
@@ -39,25 +39,25 @@ You can query file nodes like the following:
     schema
     props
   }
-  homeContent {
+  homeContent: content(page: { eq: "home" }) {
     content
     for
     home
     page
   }
-  homeSchema {
+  homeSchema: schema(page: { eq: "home" }) {
     schema
     for
     home
     page
   }
-  aboutContent {
+  aboutContent: content(page: { eq: "about" }) {
     content
     for
     about
     page
   }
-  aboutSchema {
+  aboutSchema: schema(page: { eq: "about" }) {
     schema
     for
     about
